@@ -3,7 +3,7 @@ Generate a haproxy config file based on etcd then gracefully reload haproxy
 """
 from setuptools import find_packages, setup
 
-dependencies = ['click', 'mako>=1.0.1']
+dependencies = ['click>=6.2', 'mako>=1.0.1', 'urllib3>=1.14', 'apiclient>=1.0.2']
 
 setup(
     name='haproxy-etcd',
