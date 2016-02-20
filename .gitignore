@@ -1,5 +1,6 @@
 *.pyc
-
+haproxy.cfg
+haproxy.pid
 dist/
 build/
 *.egg-info/
