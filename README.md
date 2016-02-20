@@ -3,6 +3,10 @@
 Simple tool to generate a haproxy config file based on `etcd` and gracefully reload haproxy.
 
 
+### Goal
+
+Objective is to dynamically update `haproxy.cfg` with new servers on each backend (when registred with etcd) and reload haproxy.
+
 ### Installation
 
 Simply run:
