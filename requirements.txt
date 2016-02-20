@@ -1,0 +1,5 @@
+click >= 6.2
+mako >= 1.0.1
+urllib3 >= 1.14
+apiclient >= 1.0.2
+
