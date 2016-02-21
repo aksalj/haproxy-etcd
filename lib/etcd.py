@@ -1,3 +1,4 @@
+import sys
 from apiclient import APIClient
 
 
@@ -37,30 +38,37 @@ class Etcd(APIClient):
         super(Etcd, self).__init__()
 
     def fetch_services(self, key='services'):
-        req = self.call('/keys/' + key, sorted='true')
-        nodes = req['node']['nodes']
         services = []
-        for node in nodes:
-            service = {
-                'path': '/keys' + node['key'],
-                'name': node['key'].split('/')[2]
-            }
-            services.append(service)
+        try:
+            req = self.call('/keys/' + key, sorted='true')
+            nodes = req['node']['nodes']
+            for node in nodes:
+                service = {
+                    'path': '/keys' + node['key'],
+                    'name': node['key'].split('/')[2]
+                }
+                services.append(service)
+        except:
+            print 'Unexpected error:', sys.exc_info()[0]
         return services
 
     def fetch_instances_of(self, service):
-        req = self.call(service['path'], sorted='true')
-        nodes = req['node']['nodes']
         instances = []
-        counter = 0
-        for node in nodes:
-            values = node['value'].split(':')
-            instance = {
-                'key': node['key'],
-                'name': service['name'] + '_' + repr(counter),
-                'host': values[0],
-                'port': values[1]
-            }
-            instances.append(instance)
-            counter += 1
+        try:
+            req = self.call(service['path'], sorted='true')
+            nodes = req['node']['nodes']
+            counter = 0
+            for node in nodes:
+                values = node['value'].split(':')
+                instance = {
+                    'key': node['key'],
+                    'name': service['name'] + '_' + repr(counter),
+                    'host': values[0],
+                    'port': values[1]
+                }
+                instances.append(instance)
+                counter += 1
+        except:
+            print 'Unexpected error:', sys.exc_info()[0]
+        
         return instances
