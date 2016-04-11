@@ -11,7 +11,7 @@ from haproxy import Haproxy
 @click.option('--haproxy-pid', '-p', required=False, help='path to haproxy binary. Required if using --haproxy-binary')
 @click.option('--haproxy-service', '-s', required=False, help='name of haproxy service. Not needed if using --haproxy-binary')
 @click.option('--haproxy-config', '-f', required=False, help='where to save config file')
-@click.option('--interval-check', '-i', default=1, help='Service interval check; in seconds')
+@click.option('--interval-check', '-i', default=5, help='Service interval check; in seconds')
 def main(template, client_url, haproxy_binary, haproxy_pid, haproxy_service, haproxy_config, interval_check):
     """Generate a haproxy config file based on etcd then gracefully reload haproxy"""
 

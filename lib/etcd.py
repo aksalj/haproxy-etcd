@@ -15,13 +15,13 @@ class Etcd(APIClient):
                     "dir": true,
                     "nodes": [
                       {
-                        "key": "/services/api/172.10.0.1:8000",
+                        "key": "/services/api/172.10.0.1",
                         "value": "172.10.0.1:8000",
                         "modifiedIndex": 4,
                         "createdIndex": 4
                       },
                       {
-                        "key": "/services/api/172.10.0.2:8000",
+                        "key": "/services/api/172.10.0.2",
                         "value": "172.10.0.1:8000",
                         "modifiedIndex": 5,
                         "createdIndex": 5
@@ -62,7 +62,7 @@ class Etcd(APIClient):
                 values = node['value'].split(':')
                 instance = {
                     'key': node['key'],
-                    'name': service['name'] + '_' + repr(counter),
+                    'name': values[0] + ':' + values[1],
                     'host': values[0],
                     'port': values[1]
                 }

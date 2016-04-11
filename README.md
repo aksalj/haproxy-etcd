@@ -19,6 +19,36 @@ Simply run:
 To use it:
 
     $ haproxy-etcd --help
+
+**Important**: Services are expected to be registred at `/keys/services`; 
+For each service instance, the expected value is formatted as `[HOST|IP]:PORT`
+
+e.g. for a service named `api`, a `GET` from `/keys/services/api` could return the following instances/nodes:
+```json
+{
+    "action": "get",
+    "node": {
+    "key": "/services/api",
+    "dir": true,
+    "nodes": [
+        {
+        "key": "/services/api/172.10.0.1",
+        "value": "172.10.0.1:80",
+        "modifiedIndex": 4,
+        "createdIndex": 4
+        },
+        {
+        "key": "/services/api/172.10.0.2",
+        "value": "172.10.0.1:81",
+        "modifiedIndex": 5,
+        "createdIndex": 5
+        }
+    ],
+    "modifiedIndex": 4,
+    "createdIndex": 4
+    }
+}
+```
     
 
 ### Contributing
