@@ -39,7 +39,7 @@ e.g. for a service named `api`, a `GET` from `/keys/services/api` could return t
         },
         {
         "key": "/services/api/172.10.0.2",
-        "value": "172.10.0.1:81",
+        "value": "172.10.0.2:80",
         "modifiedIndex": 5,
         "createdIndex": 5
         }
